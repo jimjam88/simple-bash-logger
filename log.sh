@@ -2,7 +2,7 @@
 
 LOG_LEVEL="DEBUG"
 
-# Get the numeric log level and the coloured text
+# Get the numeric log level
 case $LOG_LEVEL in
     "OFF")    NUMERIC_LEVEL=-1;;
     "FATAL")  NUMERIC_LEVEL=0;;
@@ -13,7 +13,7 @@ case $LOG_LEVEL in
     "DEBUG")  NUMERIC_LEVEL=5;;
 esac
 
-# Write to the console if the level is within the configured serverity
+# Write to the console if applicable
 write() {
     if [[ $NUMERIC_LEVEL -ge $2 ]]
         then
@@ -24,6 +24,7 @@ write() {
 fatal() {
     write "$1" 0 "\033[41m\033[1mFATAL \033[0m"
 }
+
 error() {
     write "$1" 1 "\033[31mERROR\033[0m "
 }
